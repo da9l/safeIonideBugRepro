@@ -1,3 +1,48 @@
+# SAFE Ionide Bug Reproduction
+
+
+This repository was created by installing and using the SAFE template.
+
+1) `dotnet new -i SAFE.Template`
+2) `dotnet new SAFE`
+3) `dotnet run`
+4) `git add -A`
+5) `git commit -m "..."`
+
+To get the errors:
+Have vscode with ionide and open the project `code .`
+
+The Ionide errors I get in the F# output are:
+```
+[10:06:07.383 ERR] [LSP Server] HandleClientMessage - Error {"Code": -32601, "Message": "Method not found", "Data": null, "$type": "Error"} when handling notification {"Version": "2.0", "Method": "$/cancelRequest", "Params": {"Value": [[[]]], "$type": "Some"}, "$type": "Notification"}
+[Error - 10:06:10] Request textDocument/hover failed.
+  Message: Cached typecheck results not yet available
+  Code: -32603
+[10:06:11.917 ERR] [LSP Server] HandleClientMessage - Error {"Code": -32601, "Message": "Method not found", "Data": null, "$type": "Error"} when handling notification {"Version": "2.0", "Method": "$/cancelRequest", "Params": {"Value": [[[]]], "$type": "Some"}, "$type": "Notification"}
+[10:06:11.934 WRN] [LSP] Errors while processing code action request for file:///c%3A/Projects/safeIonideBugRepro/src/Shared/Shared.fs with {"Diagnostics": [], "$type": "CodeActionContext"} at {"Start": {"Line": 0, "Character": 0, "DebuggerDisplay": "(0,0)", "$type": "Position"}, "End": {"Line": 0, "Character": 0, "DebuggerDisplay": "(0,0)", "$type": "Position"}, "DebuggerDisplay": "(0,0)-(0,0)", "$type": "Range"}: ["No deref found at that pos", "no typeof expr found", "Couldn't find symbolUse at (1, 9) in file c:/Projects/safeIonideBugRepro/src/Shared/Shared.fs"]
+[10:06:13.314 WRN] [LSP] Errors while processing code action request for file:///c%3A/Projects/safeIonideBugRepro/src/Shared/Shared.fs with {"Diagnostics": [{"Range": {"Start": {"Line": 19, "Character": 6, "DebuggerDisplay": "(19,6)", "$type": "Position"}, "End": {"Line": 19, "Character": 14, "DebuggerDisplay": "(19,14)", "$type": "Position"}, "DebuggerDisplay": "(19,6)-(19,14)", "$type": "Range"}, "Severity": {"Value": "Information", "$type": "Some"}, "Code": {"Value": "FL0039", "$type": "Some"}, "CodeDescription": {"Value": {"Href": {"Value": "http://fsprojects.github.io/FSharpLint/how-tos/rules/FL0039.html", "$type": "Some"}, "$type": "CodeDescription"}, "$type": "Some"}, "Source": "F# Linter", "Message": "Consider changing `getTodos` to PascalCase.", "RelatedInformation": null, "Tags": null, "Data": {"Value": [[[[[[null, null, null]], [[null, null, null]], [[]]]], [[]]]], "$type": "Some"}, "DebuggerDisplay": "[Information] ((19,6)-(19,14)) Consider changing `getTodos` to PascalCase. (FL0039)", "$type": "Diagnostic"}], "$type": "CodeActionContext"} at {"Start": {"Line": 19, "Character": 6, "DebuggerDisplay": "(19,6)", "$type": "Position"}, "End": {"Line": 19, "Character": 14, "DebuggerDisplay": "(19,14)", "$type": "Position"}, "DebuggerDisplay": "(19,6)-(19,14)", "$type": "Range"}: ["No deref found at that pos", "no typeof expr found"]
+```
+
+If someone else manages to not get these errors it is likely that my vscode/ionide/paket installation is broken somehow.
+
+
+## Environment
+
+### My environment
+
+```powershell
+[environment]::OSVersion.Version
+
+Major  Minor  Build  Revision
+-----  -----  -----  --------
+10     0      18363  0
+```
+sdk: 5.0.401
+code: 1.60.2
+7f6ab5485bbc008386c4386d08766667e155244e
+x64
+ionide: 5.7.3
+
 # SAFE Template
 
 This template can be used to generate a full-stack web application using the [SAFE Stack](https://safe-stack.github.io/). It was created using the dotnet [SAFE Template](https://safe-stack.github.io/docs/template-overview/). If you want to learn more about the template why not start with the [quick start](https://safe-stack.github.io/docs/quickstart/) guide?
